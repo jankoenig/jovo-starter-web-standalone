@@ -1,4 +1,5 @@
-import { ExpressJs, Request, Response, Webhook } from '@jovotech/server-express';
+import { ExpressJs, Request, Response } from '@jovotech/server-express';
+import express from 'express';
 import cors from 'cors';
 import { app } from './app';
 
@@ -17,6 +18,9 @@ const port = process.env.JOVO_PORT || 3000;
     return;
   }
 
+  const Webhook: express.Application = express();
+
+  Webhook.use(express.json({ limit: '50mb' }));
   Webhook.use(cors());
 
   await app.initialize();

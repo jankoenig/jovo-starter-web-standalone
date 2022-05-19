@@ -59,7 +59,11 @@ const app = new App({
   |
   */
 
-  logging: true,
+  logging: {
+    request: {
+      maskedObjects: ['input.audio.base64'], // base64 strings can be very long
+    },
+  },
 
   routing: {
     intentMap: {
